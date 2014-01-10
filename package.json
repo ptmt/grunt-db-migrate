@@ -1,0 +1,18 @@
+{
+  "name": "grunt-db-migrate",
+  "version": "0.1.0",
+  "description": "Migrate database schema and data with db-migrate ",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unknownexception/grunt-db-migrate"
+  },
+  "author": "Dmitriy Loktev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unknownexception/grunt-db-migrate/issues"
+  }
+}
