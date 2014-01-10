@@ -5,11 +5,13 @@ Migrate database schema and data with [db-migrate](https://github.com/kunklejr/n
 
 ## Getting started
 
+Install with npm:
+
 ````
 npm i grunt-db-migrate --save-dev
 ````
 
-Example task configuration:
+You may want to start with simple configuration:
 
 ````
    migrate: {
@@ -80,9 +82,11 @@ And then run the migrations up with `grunt migration` command.
 
 ## Targets
 
-`migration:up`
-`migration:down`
-`migration:create`
+`migration:up` - run all available migrations up (or just `migration`). For example, to update database to specified migration run `grunt migration:up 
+
+`migration:down` - run one migration down
+
+`migration:create %name%` - create migration javascript file from template
 
 ## Configuration
 
@@ -92,4 +96,12 @@ Environment variables for running `db-migrate`.
 
 ### `dir`
 
-Default migrations folder is `migrations`.
+Default migrations folder is `migrations`. But you can choose another:
+
+````
+migrate : {
+    options: {
+      dir: 'db/schema-migrations'
+  }
+}
+````
