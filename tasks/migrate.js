@@ -42,6 +42,7 @@ module.exports = function (grunt) {
       });
     }
 
+
     grunt.util.spawn({
         cmd: 'node',
         args: args,
