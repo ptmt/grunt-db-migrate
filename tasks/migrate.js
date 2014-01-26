@@ -25,7 +25,8 @@ module.exports = function (grunt) {
     else
       args.push('up');
 
-    args.push(arg2);
+    if (arg2)
+      args.push(arg2);
 
     if (options.verbose)
       args.push('--verbose');
