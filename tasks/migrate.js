@@ -9,11 +9,12 @@
 /* global process */
 module.exports = function (grunt) {
   'use strict';
-  grunt.registerTask('migrate', 'Run db-migrate', function (arg1) {
+  grunt.registerTask('migrate', 'Run db-migrate', function (arg1, arg2) {
 
     var options = this.options();
     var path = require('path');
 
+    console.log(arg1, arg2);
     //var driver = options.driver;
     var done = this.async();
 
@@ -23,6 +24,8 @@ module.exports = function (grunt) {
       args.push(arg1);
     else
       args.push('up');
+
+    args.push(arg2);
 
     if (options.verbose)
       args.push('--verbose');
@@ -41,7 +44,6 @@ module.exports = function (grunt) {
         spawnOpts.env[envProp] = options.env[envProp];
       });
     }
-
 
     grunt.util.spawn({
         cmd: 'node',

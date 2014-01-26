@@ -31,7 +31,13 @@ var CONF = require('config'),
  databaseUrl = 'postgres://' + CONF.db.user + ':' + CONF.db.password + '@' + CONF.db.host + ':5432/' + CONF.db.name;
 ````
 
-Create migration with `grunt migrate:create migrate_name` and edited it like this:
+Create migration with command line command:
+
+````
+$ grunt migrate:create:migrate_name
+````
+It generates a new file based on template in your 'migrations' folder (see configuration section). For example, edit this file, using `async` library:
+
 ````
 /* global exports, require */
 
@@ -78,7 +84,7 @@ exports.down = function (db, callback) {
 };
 ````
 
-And then run the migrations up with `grunt migration` command.
+And then run the migration step up with `grunt migration` command.
 
 ## Targets
 
