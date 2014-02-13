@@ -32,7 +32,7 @@ module.exports = function (grunt) {
       args.push('--verbose');
 
     if (options.dir)
-      args.push('--migrations-dir=' + options.migrationsDir);
+      args.push('--migrations-dir=' + options.dir);
 
     var spawnOpts = {
       stdio: 'inherit'
