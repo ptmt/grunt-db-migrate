@@ -11,14 +11,13 @@ module.exports = function (grunt) {
   'use strict';
   grunt.registerTask('migrate', 'Run db-migrate', function (arg1, arg2) {
 
-    var options = this.options();
-    var path = require('path');
-
-    console.log(arg1, arg2);
-    //var driver = options.driver;
-    var done = this.async();
-
-    var args = [path.resolve(process.cwd() + '/node_modules/db-migrate/bin/db-migrate')];
+    var options = this.options(),
+      path = require('path'),
+      done = this.async(),
+      spawnOpts = {
+        stdio: 'inherit'
+      },
+      args = [path.resolve(process.cwd() + '/node_modules/db-migrate/bin/db-migrate')];
 
     if (arg1)
       args.push(arg1);
@@ -34,9 +33,6 @@ module.exports = function (grunt) {
     if (options.dir)
       args.push('--migrations-dir=' + options.dir);
 
-    var spawnOpts = {
-      stdio: 'inherit'
-    };
 
     if (options.env) {
       spawnOpts.env = process.env;
