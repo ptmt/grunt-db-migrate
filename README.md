@@ -1,7 +1,7 @@
 grunt-db-migrate
 ================
 
-Migrate database schema and data with [db-migrate](https://github.com/kunklejr/node-db-migrate)
+Migrate database schema and data with consistent and flexible [db-migrate](https://github.com/kunklejr/node-db-migrate)
 
 ## Getting started
 
@@ -116,7 +116,7 @@ migrate : {
 
 Verbose output migration process.
 
-## CleanDB
+## Clean DB
 
 ````
  grunt.registerTask('cleandb', 'Clean db and re-apply all migrations', function () {
@@ -127,4 +127,39 @@ Verbose output migration process.
     }
     grunt.task.run('migrate:up');
   });
+````
+
+## Bootstrap data example
+
+This example use Sequilize models and async series to bootstrap some data.
+
+````
+var dbModels = require('../app/models');
+var async = require('async');
+
+exports.up = function (db, callback) {
+  async.series([
+    db.insert.bind(db, 'invites', ['name', 'code', 'remaining'], ['developers', 'developers', 100]),
+    db.insert.bind(db, 'categories', ['title', 'us_sizes', 'gender'], ['Formal', '["XS","S","M","L","XL","XXL","XXXL"]', 1]),
+    db.insert.bind(db, 'categories', ['title', 'us_sizes', 'gender'], ['Formal', '["XS","S","M","L","XL","XXL","XXXL"]', 2]),
+    db.insert.bind(db, 'categories', ['title', 'us_sizes', 'gender'], ['Shoes', '["5.5","6","6.5","7","7.5","8","8.5","9","9.5","10","10.5","11","11.5","12","12.5","13","13.5","14","14.5","15"]', 1]),
+    db.insert.bind(db, 'categories', ['title', 'us_sizes', 'gender'], ['Shoes', '["5.5","6","6.5","7","7.5","8","8.5","9","9.5","10","10.5","11","11.5","12","12.5","13"]', 2]),
+    db.insert.bind(db, 'addresses', ['state', 'zip', 'city', 'crossstreets', 'alias_id'], ['NY', '10011', 'New York', '19th St & 8th Ave', 2]),
+    function (cb) {
+      dbModels.User.signup('test@user.com', 'ka3!df24jh78', 'no-code', cb);
+    },
+
+  ], callback);
+
+
+};
+
+
+exports.down = function (db, callback) {
+  async.series([
+    db.runSql.bind(db, "DELETE FROM users where email = 'test@user.com' "),
+    db.runSql.bind(db, "DELETE FROM invites where name = 'developers' "),
+    db.runSql.bind(db, "DELETE FROM categories")
+  ], callback);
+};
 ````
