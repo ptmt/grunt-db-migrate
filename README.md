@@ -92,7 +92,7 @@ And then run the migration step up with `grunt migration` command.
 
 `migration:down` - run one migration down
 
-`migration:create %name%` - create migration javascript file from template
+`migration:create:%name%` - create the new migration javascript file from template
 
 ## Configuration
 
@@ -116,6 +116,10 @@ migrate : {
 
 Verbose output migration process.
 
+### Other params
+
+You could use any of `db-migrate` params.
+
 ## Clean DB
 
 ````
@@ -131,7 +135,7 @@ Verbose output migration process.
 
 ## Bootstrap data example
 
-This example use Sequilize models and async series to bootstrap some data.
+This example shows how to use Sequilize models and async series to bootstrap some data.
 
 ````
 var dbModels = require('../app/models');
@@ -150,10 +154,7 @@ exports.up = function (db, callback) {
     },
 
   ], callback);
-
-
 };
-
 
 exports.down = function (db, callback) {
   async.series([

@@ -2,7 +2,7 @@
  * grunt-db-migrate
  * https://github.com/unknownexception/grunt-db-migrate
  *
- * Copyright (c) 2013 Dmitri Loktev
+ * Copyright (c) 2013 @unknownecxeption, @GeekyEggo, @emschwartz
  * Licensed under the MIT license.
  */
 
@@ -29,8 +29,8 @@ module.exports = function (grunt) {
 
     var optionProps = Object.keys(options);
     optionProps.forEach(function (propName) {
-       if (propName === 'env') return;
-       args.push('--' + propName + '=' + options[propName]);
+      if (propName === 'env') return;
+      args.push('--' + propName + '=' + options[propName]);
     });
 
     if (options.env) {
