@@ -27,12 +27,11 @@ module.exports = function (grunt) {
     if (arg2)
       args.push(arg2);
 
-    if (options.verbose)
-      args.push('--verbose');
-
-    if (options.dir)
-      args.push('--migrations-dir=' + options.dir);
-
+    var optionProps = Object.keys(options);
+    optionProps.forEach(function (propName) {
+       if (propName === 'env') return;
+       args.push('--' + propName + '=' + options[propName]);
+    });
 
     if (options.env) {
       spawnOpts.env = process.env;
