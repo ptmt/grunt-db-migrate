@@ -7,13 +7,13 @@ Migrate database schema and data with consistent and flexible [db-migrate](https
 
 Install with npm:
 
-````
+```bash
 npm i grunt-db-migrate --save-dev
-````
+```
 
 You may want to start with simple configuration:
 
-````
+```JavaScript
    migrate: {
       options: {
         env: {
@@ -22,23 +22,23 @@ You may want to start with simple configuration:
         verbose: true
       }
     }
-````
+```
 
 where `databaseUrl` may be exctracted from your environment config like this:
 
-````
+```JavaScript
 var CONF = require('config'),
  databaseUrl = 'postgres://' + CONF.db.user + ':' + CONF.db.password + '@' + CONF.db.host + ':5432/' + CONF.db.name;
-````
+```
 
 Create migration with command line command:
 
-````
+```bash
 $ grunt migrate:create:migrate_name
-````
+```
 It generates a new file based on template in your 'migrations' folder (see configuration section). For example, edit this file, using `async` library:
 
-````
+```JavaScript
 /* global exports, require */
 
 var async = require('async');
@@ -82,7 +82,7 @@ exports.down = function (db, callback) {
     })
   ], callback);
 };
-````
+```
 
 And then run the migration step up with `grunt migration` command.
 
@@ -120,9 +120,11 @@ Verbose output migration process.
 
 You could use any of `db-migrate` params.
 
+# Useful examples
+
 ## Clean DB
 
-````
+```JavaScript
  grunt.registerTask('cleandb', 'Clean db and re-apply all migrations', function () {
     var fs = require('fs');
     var files = fs.readdirSync('./migrations');
@@ -131,13 +133,13 @@ You could use any of `db-migrate` params.
     }
     grunt.task.run('migrate:up');
   });
-````
+```
 
 ## Bootstrap data example
 
 This example shows how to use Sequilize models and async series to bootstrap some data.
 
-````
+```JavaScript
 var dbModels = require('../app/models');
 var async = require('async');
 
@@ -163,4 +165,4 @@ exports.down = function (db, callback) {
     db.runSql.bind(db, "DELETE FROM categories")
   ], callback);
 };
-````
+```
