@@ -17,7 +17,7 @@ module.exports = function (grunt) {
       spawnOpts = {
         stdio: 'inherit'
       },
-      args = [path.resolve(process.cwd() + '/node_modules/db-migrate/bin/db-migrate')];
+      args = [path.join(__dirname, '..', 'db-migrate-wrapper.js')]
 
     if (arg1)
       args.push(arg1);
