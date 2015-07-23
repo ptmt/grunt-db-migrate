@@ -24,7 +24,7 @@ You may want to start with simple configuration:
     }
 ```
 
-where `databaseUrl` may be exctracted from your environment config like this:
+where `databaseUrl` may be extracted from your environment config like this:
 
 ```JavaScript
 var CONF = require('config'),

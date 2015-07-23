@@ -20,6 +20,6 @@
     "url": "https://github.com/unknownexception/grunt-db-migrate/issues"
   },
   "dependencies": {
-    "db-migrate": "~0.6.3"
+    "db-migrate": ">=0.6.3 <0.10"
   }
 }
