@@ -1,6 +1,6 @@
 {
   "name": "grunt-db-migrate",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Migrate database schema and data with db-migrate ",
   "main": "Gruntfile.js",
   "scripts": {
